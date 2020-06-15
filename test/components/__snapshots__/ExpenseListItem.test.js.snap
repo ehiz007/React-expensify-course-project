@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should display an individual expense 1`] = `
+<div
+  className="expense"
+>
+  <Link
+    to="/edit/undefined"
+  >
+    <h3 />
+  </Link>
+  <p>
+     - 
+  </p>
+  <button
+    onClick={[Function]}
+  >
+    remove
+  </button>
+</div>
+`;

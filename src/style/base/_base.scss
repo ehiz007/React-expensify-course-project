@@ -1,0 +1,29 @@
+* html {
+    font-size: 32.5%;
+}
+
+body {
+    // font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;;
+    font-size: $f1;
+    
+}
+
+.spread {
+    display:flex;
+    justify-content: space-between;
+    max-width: 20rem;
+}
+
+.indicate {
+    font-weight: bold;
+    color:brown;
+    font-style:italic;
+}
+
+.expense {
+    max-width: 70vh;
+    display: flex;
+    justify-content: space-between;
+    justify-items: left;;
+    
+}
