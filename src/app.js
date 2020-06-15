@@ -17,15 +17,6 @@ const unsuscribe = store.subscribe( () =>{
     // console.log(visibleExpenses)
 })
 
-store.dispatch( addExpense ({description:'water bill', note:'bills', amount:5000, createdAt: 1000}))
-store.dispatch( addExpense ({description:'gas bill', note:'bills', amount:10000, createdAt: 2000}))
-
-
-setTimeout(()=>store.dispatch( addExpense({description:'junks', note:'food',amount:300, createdAt:5500})), 200
-)
-
-
-
 const jsx =  (
     <Provider store={store}>
         <AppRouter />
