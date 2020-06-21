@@ -14,8 +14,9 @@ const store = configureStore()
 const unsuscribe = store.subscribe( () =>{
     const state = store.getState()
     const visibleExpenses = getVisibility(state.expenses, state.filters)
-    // console.log(visibleExpenses)
+
 })
+
 
 const jsx =  (
     <Provider store={store}>
