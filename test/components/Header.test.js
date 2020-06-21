@@ -6,7 +6,7 @@ import toJSON from 'enzyme-to-json'
 
 test('should render header children length', () => {
     const wrapper = shallow(<Header />) 
-    expect(wrapper.find('NavLink').length).toBe(4)
+    expect(wrapper.find('NavLink').length).toBe(3)
 })
 
 test('should render header correctly', () => {

@@ -23,12 +23,6 @@ exports[`should render header correctly 1`] = `
     </NavLink>
     <NavLink
       activeClassName="indicate"
-      to="/edit/:id"
-    >
-      Edit
-    </NavLink>
-    <NavLink
-      activeClassName="indicate"
       to="/help"
     >
       Help
