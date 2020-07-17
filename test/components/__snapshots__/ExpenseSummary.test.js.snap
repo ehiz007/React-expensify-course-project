@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should return only one expense 1`] = `
+<div>
+  <h3>
+    you have 
+     
+    expenses
+     , totalling 
+    $0.00
+  </h3>
+</div>
+`;

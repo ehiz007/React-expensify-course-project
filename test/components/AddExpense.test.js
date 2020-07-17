@@ -4,12 +4,12 @@ import {AddExpensePage} from '../../src/components/AddExpense'
 import expenses from '../expenses/expenses'
 import moment from 'moment'
 
-let addExpense,history,wrapper
+let startAddExpense,history,wrapper
 
 beforeEach(() => {
-    addExpense = jest.fn()
+    startAddExpense = jest.fn()
     history = { push: jest.fn() }
-    wrapper = shallow(<AddExpensePage addExpense={addExpense} history={history}/>)
+    wrapper = shallow(<AddExpensePage startAddExpense={startAddExpense} history={history}/>)
 })
 
 test('should render on form submission', () => {
@@ -19,6 +19,6 @@ test('should render on form submission', () => {
 
 test('should handle on submit event', () => {
     wrapper.find('ExpenseForm').prop('onSubmit')(expenses[0])
-    expect(addExpense).toHaveBeenLastCalledWith(expenses[0])
+    expect(startAddExpense).toHaveBeenLastCalledWith(expenses[0])
     expect(history.push).toHaveBeenLastCalledWith('/')
 })

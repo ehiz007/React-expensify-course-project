@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import 'react-dates/initialize'
+// import 'react-dates/initialize'
+// import 'react-dates/lib/css/_datepicker.css'
 import {DateRangePicker} from 'react-dates'
-import 'react-dates/lib/css/_datepicker.css'
 import moment from 'moment'
 import {setTextFilter, setStartDate, setEndDate, sortByDate, sortByAmount} from '../actions/filters'
 

@@ -8,7 +8,7 @@ import numeral from 'numeral'
 //changing currency
 numeral.register('locale', 'ng', {
     delimiters: {
-        thousands: ' ',
+        thousands: ',',
         decimal: '.'
     },
     abbreviations: {
