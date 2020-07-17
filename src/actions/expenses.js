@@ -3,6 +3,7 @@ import database from '../firebase/firebase'
 
 //Expenses Actions dispatched to the reducers to work on the store
 
+//////////////////////////////NEW EXPENSE ADDER////////////////
 //ADD_EXPENSE
 
 export const addExpense = (expense) => ({
@@ -27,13 +28,31 @@ export const startAddExpense = (expenseData = {}) => {
     }
 }
 
-//REMOVE_EXPENSE
-export const removeExpense = ({id } = {}) =>(
+///////////////////EXPENSE REMOVER///////////////////
+
+//Dispatches REMOVE_EXPENSE from store
+export const removeExpense = ({id} = {}) =>(
     {
         id,
         type: 'REMOVE_EXPENSE'
     }
 )
+
+//Start remove Expense from store and database
+
+export const startRemoveExpense = ({id} = {}) => {
+    
+    return (dispatch) => {
+         return database.ref(`expenses/${id}`).remove().then(() => {
+            dispatch(removeExpense({id}))
+         })
+         
+
+    }
+}
+
+///////////////EDIT EXPENSE //////////////////////////////
+
 //Edit expense
 export const editExpense = ({id, updates} = {}) => ({
     type: 'EDIT_EXPENSE',
@@ -41,7 +60,24 @@ export const editExpense = ({id, updates} = {}) => ({
     updates
 }) 
 
-//Set expenses read from a database and set store 
+export const startEditExpense = ({id, updates} = {}) => {
+    console.log(id)
+    return (dispatch) => {
+        return database.ref(`expenses/${id}`).update(updates).then((snapshot) => {
+            console.log(snapshot)
+            dispatch(editExpense({
+                id,
+                updates
+            }))
+        })
+    }
+
+}
+
+
+///////////////SETTING STATE TO DATA READ FROM THE STORE
+
+//dispatches set action to store 
 
 export const setExpenses = (expenses) => ({
     type: 'SET_EXPENSE',
@@ -66,6 +102,11 @@ export const startSetExpenses = () => {
         })    
     }
 }
+
+
+
+
+
 
 //Old Add expense
 // export const addExpense = (
