@@ -1,7 +1,8 @@
+import thunk from 'redux-thunk'
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
 import expenseReducer from '../reducers/expenses'
 import filtersReducer from '../reducers/filters'
-import thunk from 'redux-thunk'
+import authReducer from '../reducers/auth'
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -9,7 +10,8 @@ export default () => {
     const store = createStore (
         combineReducers ({
             expenses: expenseReducer,
-            filters: filtersReducer
+            filters: filtersReducer,
+            auth: authReducer
         }), composeEnhancer(applyMiddleware(thunk))
     )
     return store

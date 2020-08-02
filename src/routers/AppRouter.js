@@ -1,29 +1,33 @@
 import React from 'react'
-import {BrowserRouter, Route, Switch, NavLink, Link} from 'react-router-dom'
-import Header from '../components/Header'
+import createBrowserHistory from 'history/createBrowserHistory'
+import {BrowserRouter, Router, Route, Switch, NavLink, Link} from 'react-router-dom'
 import ExpenseDashboardPage from '../components/Dashboard'
 import AddExpensePage from '../components/AddExpense'
 import EditExpensePage from '../components/EditExpense'
-import HelpPage from '../components/HelpPage'
 import ErrorPage from '../components/ErrorPage'
+import LoginPage from '../components/LoginPage'
+import PrivateRoute from './PrivateRoutes'
+import PublicRoute from './PublicRoutes'
 
+export const history = createBrowserHistory()
 
 const AppRouter = () => (
-    <BrowserRouter>
+    <Router history={history}>
         <div>
-            <Header />
-          
             <Switch>
-                <Route path='/' component={ExpenseDashboardPage} exact />
-                <Route path='/create' component={AddExpensePage} />
-                <Route path='/edit/:id' component={EditExpensePage} />
-                <Route path ='/help' component={HelpPage}/>
+                <PublicRoute path='/' component={LoginPage} exact={true}/>
+                <PrivateRoute path='/dashboard'  component={ExpenseDashboardPage} />
+                <PrivateRoute path='/create' component={AddExpensePage} />
+                <PrivateRoute path='/edit/:id' component={EditExpensePage} />
                 <Route component={ErrorPage} />
                 
             </Switch>
         </div>
-    </BrowserRouter>
+    </Router>
 )
 
 
 export default AppRouter
+
+//for normal operation browser history has its own history passed in behind the scene
+//for router you need to pass in your history >>> which led to import history and creating an instance used in router

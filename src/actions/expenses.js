@@ -14,11 +14,12 @@ export const addExpense = (expense) => ({
 // dispatch action and send data to fire base database
 
 export const startAddExpense = (expenseData = {}) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid
         const {description = '', note = '', amount = 0, createdAt = 0} = expenseData
         const expense = {description, note, amount, createdAt}
 
-        return database.ref('expenses').push(expense).then( (ref) => {
+        return database.ref(`users/${uid}/expenses`).push(expense).then( (ref) => {
            
             dispatch(addExpense({
                 id: ref.key,
@@ -42,8 +43,9 @@ export const removeExpense = ({id} = {}) =>(
 
 export const startRemoveExpense = ({id} = {}) => {
     
-    return (dispatch) => {
-         return database.ref(`expenses/${id}`).remove().then(() => {
+    return (dispatch,getState) => {
+        const uid = getState().auth.uid
+         return database.ref(`users/${uid}/expenses/${id}`).remove().then(() => {
             dispatch(removeExpense({id}))
          })
          
@@ -62,9 +64,9 @@ export const editExpense = ({id, updates} = {}) => ({
 
 export const startEditExpense = ({id, updates} = {}) => {
     console.log(id)
-    return (dispatch) => {
-        return database.ref(`expenses/${id}`).update(updates).then((snapshot) => {
-            console.log(snapshot)
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid
+        return database.ref(`users/${uid}/expenses/${id}`).update(updates).then((snapshot) => {
             dispatch(editExpense({
                 id,
                 updates
@@ -87,10 +89,10 @@ export const setExpenses = (expenses) => ({
 
 
 export const startSetExpenses = () => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         const expenses = []
-        
-        return database.ref('expenses').once('value').then( (snapshot) => {
+        const uid = getState().auth.uid
+        return database.ref(`users/${uid}/expenses`).once('value').then( (snapshot) => {
             if(snapshot !== null) {
                 snapshot.forEach((childSnapshot) => {
                     expenses.push({
